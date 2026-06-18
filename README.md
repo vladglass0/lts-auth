@@ -1,4 +1,5 @@
 # LTS Auth Mod
+## Download it from [Modrinth](https://modrinth.com/mod/lts-auth)
 
 A server-side authentication mod for Minecraft Forge 1.20.1.
 
@@ -18,6 +19,8 @@ A server-side authentication mod for Minecraft Forge 1.20.1.
 ## Configuration
 
 The mod stores player data in `config/lts_auth/players.json`.
+
+Messages file is `config/lts_auth/messages.yml`
 
 ## Installation
 
