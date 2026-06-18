@@ -1,9 +1,11 @@
 package com.rtxbb.lts_auth.manager;
 
+import com.rtxbb.lts_auth.LtsAuthMod;
 import com.rtxbb.lts_auth.data.PlayerData;
 import com.rtxbb.lts_auth.data.PlayerStorage;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,14 +39,14 @@ public class AuthManager {
         PlayerData data = new PlayerData(player.getUUID(), player.getGameProfile().getName(), password);
         storage.addPlayer(data);
         authenticatedPlayers.add(player.getUUID());
-        player.sendSystemMessage(Component.literal("§aУспешная регистрация и вход!"));
+        player.sendSystemMessage(Component.literal(LtsAuthMod.messages().getColored("messages.register_success")));
     }
 
     public boolean login(ServerPlayer player, String password) {
         PlayerData data = storage.getPlayer(player.getUUID());
         if (data != null && data.getPassword().equals(password)) {
             authenticatedPlayers.add(player.getUUID());
-            player.sendSystemMessage(Component.literal("§aУспешный вход!"));
+            player.sendSystemMessage(Component.literal(LtsAuthMod.messages().getColored("messages.login_success")));
             return true;
         }
         return false;

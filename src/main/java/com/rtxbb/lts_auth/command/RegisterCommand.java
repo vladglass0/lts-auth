@@ -2,11 +2,13 @@ package com.rtxbb.lts_auth.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.rtxbb.lts_auth.LtsAuthMod;
 import com.rtxbb.lts_auth.manager.AuthManager;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+
 
 public class RegisterCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -17,12 +19,12 @@ public class RegisterCommand {
                     String password = StringArgumentType.getString(context, "password");
 
                     if (AuthManager.getInstance().isRegistered(player.getUUID())) {
-                        context.getSource().sendFailure(Component.literal("Ты уже зарегестрирован!"));
+                        context.getSource().sendFailure(Component.literal(LtsAuthMod.messages().getColored("messages.already_registered")));
                         return 0;
                     }
 
                     if (password.length() < 4) {
-                        context.getSource().sendFailure(Component.literal("Пароль должен содержать минимум 4 символа!"));
+                        context.getSource().sendFailure(Component.literal(LtsAuthMod.messages().getColored("messages.password_too_short")));
                         return 0;
                     }
 

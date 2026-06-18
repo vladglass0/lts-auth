@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.mojang.logging.LogUtils;
+import com.rtxbb.lts_auth.LtsAuthMod;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.slf4j.Logger;
+
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -40,7 +42,7 @@ public class PlayerStorage {
                 players = new HashMap<>();
             }
         } catch (IOException e) {
-            LOGGER.error("Failed to load player data", e);
+            LOGGER.error(LtsAuthMod.messages().get("messages.storage_load_failed"), e);
             players = new HashMap<>();
         }
     }
@@ -55,7 +57,7 @@ public class PlayerStorage {
                 GSON.toJson(players, writer);
             }
         } catch (IOException e) {
-            LOGGER.error("Failed to save player data", e);
+            LOGGER.error(LtsAuthMod.messages().get("messages.storage_save_failed"), e);
         }
     }
 
@@ -72,3 +74,4 @@ public class PlayerStorage {
         return players.containsKey(uuid);
     }
 }
+
